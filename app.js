@@ -14,7 +14,17 @@ app.route('/')
 		  res.sendFile(process.cwd() + '/views/index.html');
     })
 
-app.post
+app.post('/upload',upload.single("file"),
+    function(req,res)
+    {
+      if(req.file)
+      {
+        res.send("Hey look! A file!");
+      }
+      else
+      res.send("No file selected");
+    }
+);
 
 app.listen(process.env.PORT, function () {
   console.log('Node.js listening ...');
