@@ -12,17 +12,18 @@ app.use('/public', express.static(process.cwd() + '/public'));
 app.route('/')
    .get(function(req, res) {
 		  res.sendFile(process.cwd() + '/views/index.html');
-    })
+    });
 
-app.post('/upload',upload.single("file"),
+app.post('/post',upload.single("file"),
     function(req,res,next)
     {
       if(req.file)
       {
-        res.send("Hey look! A file!");
+        //console.log(res.headers);
+        res.json(req.file);
       }
       else
-      res.send("No file selected");
+        
     }
 );
 
